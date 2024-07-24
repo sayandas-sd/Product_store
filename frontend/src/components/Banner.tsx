@@ -53,7 +53,7 @@ export const Banner = () => {
   return (
     <div className="container mx-auto rounded md:h-full mt-6">
       <div className="h-full md:h-96 mx-auto w-full relative ">
-        <div className='absolute z-10 w-full h-full md:flex items-center hidden '>
+        <div className='absolute z-10 w-full h-full md:flex items-center hidden'>
             <div className='flex justify-between w-full text-3xl'>
                 <button onClick={prevClick} className='text-gray-400 p-3 pr-0 rounded-r-lg bg-white'><LeftArrow /></button>
                 <button onClick={nextClick} className='text-gray-400 p-3 pr-0 rounded-l-lg bg-white'><RightArrow /></button>

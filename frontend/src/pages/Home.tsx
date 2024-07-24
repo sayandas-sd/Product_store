@@ -8,10 +8,13 @@ export const Home = ({placeholder}:{placeholder : string})=>{
         <div>
             <Navbar placeholder={placeholder}/>
             <Banner />
-            <div className="text:xl md:text-3xl md:font-semibold tracking-wide text-slate-600 flex justify-center items-center p-8 mt-3">
+            <div className="text:xl md:text-3xl md:font-semibold tracking-wide text-slate-800 flex justify-center items-center p-8 mt-3">
                 TOP DEALS
             </div>
             <Catagory />
+            <div className="text:xl md:text-3xl md:font-semibold tracking-wide text-slate-800 flex justify-center items-center p-8 mt-3">
+                COLLECTIONS
+            </div>
             <Product />
         </div>
     </div>
