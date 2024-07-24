@@ -1,9 +1,10 @@
 import { Cart } from "./Cart";
 
 import { Login } from "./Login";
+import logo from "../assets/images/logo.png";
 
 export const Navbar = ({ placeholder }: {placeholder: string})=>{
-    return <div className="border-b flex justify-evenly items-center md:justify-between p-4 cursor-pointer">
+    return <div className="border-b flex justify-evenly items-center md:justify-evenly p-1 cursor-pointer">
         <div className="flex justify-center flex-col">
             <Logo/>
         </div>
@@ -68,8 +69,9 @@ const Collection = ()=>{
 
 
 
+
 const Logo = ()=>{
     return <div>
-        saynCart
+        <img src={logo} alt="logo" className="h-14 w-14"/>
     </div>
 }

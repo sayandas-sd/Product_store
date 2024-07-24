@@ -2,6 +2,14 @@
 
 export const Product = ()=>{
     return <div>
-        Product
+        <div>
+            heoo
+        </div>
+        <div>
+            dsd
+        </div>
+        <div>
+            dsd
+        </div>
     </div>
 }

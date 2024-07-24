@@ -25,12 +25,12 @@ const deskTopImages: Image[] = [
 
 export const Catagory = () => {
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 bg-slate-50 rounded-lg cursor-pointer">
       <div className="flex flex-wrap justify-center justify-evenly">
         {deskTopImages.map((image, index) => (
           <div className="flex flex-col items-center m-2" key={index}>
-            <img src={image.src} className="w-24 h-24 md:w-27 md:h-27 object-cover" alt={image.name} />
-            <span className="mt-2 text-sm md:text-base">{image.name}</span>
+            <img src={image.src} className="w-24 h-24 md:w-27 md:h-27 object-cover rounded-full" alt={image.name} />
+            <span className="mt-2 text-sm font-semibold md:text-base font-semibold">{image.name}</span>
           </div>
         ))}
       </div>

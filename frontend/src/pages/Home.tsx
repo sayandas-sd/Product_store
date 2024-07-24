@@ -7,8 +7,11 @@ export const Home = ({placeholder}:{placeholder : string})=>{
     return <div >
         <div>
             <Navbar placeholder={placeholder}/>
-            <Catagory />
             <Banner />
+            <div className="text:xl md:text-3xl md:font-semibold tracking-wide text-slate-600 flex justify-center items-center p-8 mt-3">
+                TOP DEALS
+            </div>
+            <Catagory />
             <Product />
         </div>
     </div>

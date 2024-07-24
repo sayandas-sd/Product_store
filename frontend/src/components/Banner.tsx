@@ -51,9 +51,8 @@ export const Banner = () => {
         
      
   return (
-    <div className="container mx-auto rounded md:h-full">
+    <div className="container mx-auto rounded md:h-full mt-6">
       <div className="h-full md:h-96 mx-auto w-full relative ">
-
         <div className='absolute z-10 w-full h-full md:flex items-center hidden '>
             <div className='flex justify-between w-full text-3xl'>
                 <button onClick={prevClick} className='text-gray-400 p-3 pr-0 rounded-r-lg bg-white'><LeftArrow /></button>
@@ -63,7 +62,7 @@ export const Banner = () => {
 
             {/* desktop */}
 
-        <div className='hidden md:flex h-full w-full overflow-hidden'>
+        <div className='hidden md:flex h-full w-full overflow-hidden rounded-md'>
             {deskTopImages.map((image, index) => (
             <div className="w-full h-full min-w-full min-h-full transition-transform duration-500 ease-in-out " 
             key={index}
