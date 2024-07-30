@@ -18,6 +18,9 @@ model User {
   email    String   @unique
   name     String?
   password String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  order    Order[]
   Address  Address[]
 }
 
@@ -33,5 +36,52 @@ model Address {
   published Boolean  @default(false)
   user      User     @relation(fields: [userId], references: [id])
   userId    String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  order     Order[]
 }
+
+model Product {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  price       Float
+  inventory   Int
+  image       String?
+  category    Category @relation(fields: [categoryId], references: [id]) 
+  categoryId  String
+  orderItems  OrderItem[]
+  
+}
+
+model Category {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  product     Product[]
+}
+
+model Order {
+  id          String  @id   @default(uuid())
+  status      String
+  total       Float
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+  address     Address  @relation(fields: [addressId], references: [id])
+  addressId   String
+  createdAt   DateTime @default(now())
+  placed      Boolean  @default(false)
+  items       OrderItem[]
+}
+
+model OrderItem {
+  id          String  @id  @default(uuid())
+  price       Float
+  quantity    Int
+  order       Order     @relation(fields: [orderId], references: [id])
+  orderId     String
+  product     Product   @relation(fields: [productId], references: [id])
+  productId   String
+}
+
 
