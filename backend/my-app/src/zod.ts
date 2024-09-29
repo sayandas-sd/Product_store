@@ -14,3 +14,17 @@ export const signinSchema = z.object({
 })
 
 export type signinSchema = z.infer<typeof signinSchema>
+
+
+export const orderItemSchema = z.object({
+    price: z.number().positive(),
+    quantity: z.number().int().positive(),
+    productId: z.string().uuid()
+})
+
+export const createOrderSchema = z.object({
+    address: z.string().uuid(),
+    items: z.array(orderItemSchema).nonempty()
+})
+
+export type createOrderSchema = z.infer<typeof createOrderSchema>

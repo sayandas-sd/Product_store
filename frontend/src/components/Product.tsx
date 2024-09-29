@@ -18,7 +18,7 @@ export const Product = ()=>{
         <div className=" container bg-blue-100 mx-auto p-5 mt-8 h-60 rounded-xl">
             helo
         </div>
-        <div className="text:xl md:text-3xl md:font-semibold tracking-wide text-slate-800 flex justify-center items-center p-8 mt-7">
+        <div className="text:2xl font-semibold md:text-3xl md:font-semibold tracking-wider font-mono text-slate-800 flex justify-center items-center p-8 mt-7">
             LATEST COLLECTION
         </div>
         <div className="container mx-auto ">
@@ -37,7 +37,7 @@ export const Product = ()=>{
                 </div>
             </div>
         </div>
-        <div className="text:xl md:text-3xl md:font-semibold tracking-wide text-slate-800 flex justify-center items-center p-8 mt-7">
+        <div className="text:2xl font-semibold  md:text-3xl md:font-semibold tracking-wider font-mono text-slate-800 flex justify-center items-center p-8 mt-7">
             TOP BRANDS
         </div>
         <div className="container mx-auto">
@@ -53,7 +53,7 @@ export const Product = ()=>{
                 </div>
             </div>
         </div>
-        <div className="text:xl md:text-3xl md:font-semibold tracking-wide text-slate-800 flex justify-center items-center p-8 mt-7">
+        <div className="text:2xl font-semibold md:text-3xl md:font-semibold tracking-wider font-mono text-slate-800 flex justify-center items-center p-8 mt-5">
             CATEGORIES
         </div>
         <div className="container mx-auto">
@@ -64,8 +64,13 @@ export const Product = ()=>{
                 <div className="bg-red-100 h-60 rounded">
                     dsd
                 </div>
-                <div className="bg-red-100 h-60 rounded">
-                    dsd
+            </div>
+        </div>
+
+        <div className="container mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-4">
+               <div className="bg-red-100 h-60 rounded">
+                    heoo
                 </div>
                 <div className="bg-red-100 h-60 rounded">
                     dsd
@@ -73,15 +78,15 @@ export const Product = ()=>{
             </div>
         </div>
 
-        <div className="text:xl md:text-3xl md:font-semibold tracking-wide text-slate-800 flex justify-center items-center p-8 mt-7">
+        <div className="text:2xl font-semibold md:text-3xl md:font-semibold tracking-wider font-mono text-slate-800 flex justify-center items-center p-8 mt-5">
             DISCOUNT PRODUCTS
         </div>
 
-        <div className=" container bg-blue-100 mx-auto p-5 mt-8 h-60 rounded-xl">
+        <div className=" container bg-blue-100 mx-auto p-5 mt-5 h-60 rounded-xl">
             advertisement
         </div>
 
-        <div className="text:xl text-white md:text-3xl md:text-white md:font-semibold tracking-wide text-slate-800 flex justify-center items-center p-3 mt-7 bg-red-600 md:bg-red-600">
+        <div className="text:2xl font-semibold tracking-widest text-white md:text-3xl md:text-white md:font-semibold tracking-wide text-slate-800 flex justify-center items-center p-3 mt-7 bg-red-600 md:bg-red-600">
             BEST BRAND 
         </div>
 

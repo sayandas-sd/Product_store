@@ -1,7 +1,6 @@
-
 import { Hono } from "hono"
 import { verify } from 'hono/jwt'
-import { StatusCode } from "./statuscode";
+import { StatusCode } from "../statuscode";
 import type { Context } from 'hono';
 
 export const validationRouter = new Hono<{
@@ -14,7 +13,6 @@ export const validationRouter = new Hono<{
     }
 }>();
 
-
 export const authMiddleWare = async (c: Context, next: () => Promise<void>) => {
 
     const authHolder = c.req.header("authorization") || "";
@@ -26,7 +24,7 @@ export const authMiddleWare = async (c: Context, next: () => Promise<void>) => {
     }
 
     const token = authHolder.split(' ')[1];
-
+    
     try{
         const decoded = await verify(token, c.env.JWT_SECRET); 
 
@@ -35,16 +33,16 @@ export const authMiddleWare = async (c: Context, next: () => Promise<void>) => {
             await next()
             
         } else {
+            c.status(StatusCode.Unauthorized);
             return c.json({
                 msg: "not authorized" 
-            },{status: StatusCode.Unauthorized});
+            });
         }
 
     } catch (e) {
+        c.status(StatusCode.Forbidden)
         return c.json({
             msg: "you are not valid"
-        }, {
-            status: StatusCode.Forbidden
         })
     }
 }

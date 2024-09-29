@@ -4,7 +4,7 @@ import { Login } from "./Login";
 import logo from "../assets/images/logo.png";
 
 export const Navbar = ({ placeholder }: {placeholder: string})=>{
-    return <div className="border-b flex justify-evenly items-center md:justify-evenly p-2 cursor-pointer">
+    return <div className="border-b flex justify-evenly items-center md:justify-evenly p-1 cursor-pointer">
         <div className="flex justify-center flex-col">
             <Logo/>
         </div>

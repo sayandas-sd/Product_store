@@ -9,7 +9,6 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home placeholder="What are you looking for?"/>}/>
-
         </Routes>
       </BrowserRouter>
     </div>
