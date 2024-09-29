@@ -28,3 +28,18 @@ export const createOrderSchema = z.object({
 })
 
 export type createOrderSchema = z.infer<typeof createOrderSchema>
+
+export const profileSchema = z.object({
+    email: z.string().email(),
+    address: z.object({
+        name: z.string(),
+        mobile: z.number(),
+        pincode: z.number(),
+        address: z.string(),
+        city: z.string(),
+        state: z.string(),
+        landmark: z.string()
+    })
+})
+
+export type profileSchema = z.infer<typeof profileSchema>

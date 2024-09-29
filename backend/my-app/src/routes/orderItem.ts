@@ -28,7 +28,6 @@ orderRouter.post("/", async (c) => {
 
         const userId = c.get('userId');
 
-
         const { success } = createOrderSchema.safeParse({ addressId, items });
 
         if(!success) {

@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client/edge';
 import { withAccelerate } from '@prisma/extension-accelerate';
 import { StatusCode } from '../statuscode';
 import { sign} from 'hono/jwt';
-import { signinSchema, signupSchema } from '../zod';
+import { profileSchema, signinSchema, signupSchema } from '../zod';
 
 export const userRouter = new Hono<{
     Bindings: {
@@ -94,6 +94,7 @@ userRouter.post('/signup', async (c) => {
           msg: "this email is already exist"
         });
       }
+
       //jwt token
       const token = await sign({id: user.id}, c.env.JWT_SECRET);
   
@@ -110,3 +111,46 @@ userRouter.post('/signup', async (c) => {
     }
 })
   
+
+userRouter.post("/profile", async (c) => {
+  try {
+    const body = await c.req.json();
+
+    const result = profileSchema.safeParse(body);
+
+    if (!result.success) {
+      c.status(StatusCode.BadRequest);
+      return c.json({
+        msg: "Incorrect input",
+        errors: result.error.errors
+      });
+    }
+
+    const prisma = new PrismaClient({
+      datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+
+    const userProfile = await prisma.user.update({
+      where: { 
+        email: body.email 
+      },
+      data: {
+        address: {
+          create: body.address,
+        },
+      }
+    });
+
+    return c.json({
+      profile: userProfile,
+      msg: "Profile updated successfully"
+    }, { status: StatusCode.OK });
+
+  } catch (e) {
+    console.error(e);
+    c.status(StatusCode.InternalServerError);
+    return c.json({
+      msg: "Could not update profile"
+    });
+  }
+});
