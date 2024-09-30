@@ -33,7 +33,7 @@ orderRouter.post("/", async (c) => {
         if(!success) {
             c.status(StatusCode.BadRequest);
             return c.json({
-                mag: "Incorrect input"
+                msg: "Incorrect input"
             })
         }
 
@@ -56,6 +56,9 @@ orderRouter.post("/", async (c) => {
                         productId: item.productId,
                     })),
                 }
+            },
+            include: {
+                items: true
             }
         })
        
@@ -74,7 +77,7 @@ orderRouter.post("/", async (c) => {
     }
 })
 
-//order details
+//order details 
 
 orderRouter.get("/", async (c)=>{
     try{

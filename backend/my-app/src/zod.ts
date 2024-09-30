@@ -43,3 +43,14 @@ export const profileSchema = z.object({
 })
 
 export type profileSchema = z.infer<typeof profileSchema>
+
+export const productSchema = z.object({
+    name: z.string().min(1),
+    description: z.string(),
+    price: z.number().positive(),
+    inventory: z.number().positive(),
+    image: z.string().url().optional(),
+    category: z.string(),
+})
+
+export type productSchema = z.infer<typeof productSchema>
