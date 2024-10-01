@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client/edge';
 import { withAccelerate } from '@prisma/extension-accelerate';
 import { z } from 'zod';
 import { StatusCode } from "../statuscode";
+import { productSchema } from "../zod";
 
 const productRouter = new Hono<{
     Bindings: {
@@ -11,57 +12,69 @@ const productRouter = new Hono<{
 }>();
 
 
-export const productSchema = z.object({
-    name: z.string().min(1),
-    description: z.string(),
-    price: z.number().positive(),
-    imageUrl: z.string().url().optional(),
-    category: z.string(),
-});
-
-type ProductInput = z.infer<typeof productSchema>;
-
-
-const createPrismaClient = (databaseUrl: string) => {
-    return new PrismaClient({
-        datasourceUrl: databaseUrl,
-    }).$extends(withAccelerate());
-};
-
 
 productRouter.post("/", async (c) => {
     try {
         const body = await c.req.json();
-        const validatedData = productSchema.parse(body);
 
-        const prisma = createPrismaClient(c.env.DATABASE_URL);
-        
+        const { success } = productSchema.safeParse(body);
+
+        if(!success) {
+            c.status(StatusCode.BadRequest);
+            return c.json({
+                 msg: "Incorrect input"
+            })
+
+        }
+
+        const prisma = new PrismaClient({
+            datasourceUrl: c.env.DATABASE_URL,
+          }).$extends(withAccelerate())
+          
         const newProduct = await prisma.product.create({
-            data: validatedData,
+            data: {
+                name: body.name,
+                description:  body.description,
+                price: body.price,
+                inventory: body.inventory,
+                image: body.image,
+                category: body.category
+            },
         });
 
-        return c.json({ product: newProduct, msg: "Product created successfully" }, { status: StatusCode.Created });
+        return c.json({ 
+            product: newProduct,
+            msg: "Product created successfully" 
+        }, { status: StatusCode.OK });
+
     } catch (e) {
-        if (e instanceof z.ZodError) {
-            c.status(StatusCode.BadRequest);
-            return c.json({ msg: "Invalid input", errors: e.errors });
-        }
-        console.error(e);
         c.status(StatusCode.InternalServerError);
-        return c.json({ msg: "Failed to create product" });
+        return c.json({ 
+            msg: "Failed to create product" 
+        });
     }
 });
 
 
 productRouter.get("/", async (c) => {
     try {
-        const prisma = createPrismaClient(c.env.DATABASE_URL);
+        const prisma = new PrismaClient({
+            datasourceUrl: c.env.DATABASE_URL,
+          }).$extends(withAccelerate())
+          
         const products = await prisma.product.findMany();
-        return c.json({ products }, { status: StatusCode.OK });
-    } catch (e) {
-        console.error(e);
+
+        return c.json({ 
+            products 
+        }, { status: StatusCode.OK });
+
+    } catch (e) { 
+
         c.status(StatusCode.InternalServerError);
-        return c.json({ msg: "Failed to retrieve products" });
+
+        return c.json({ 
+            msg: "Failed to retrieve products" 
+        });
     }
 });
 
@@ -69,21 +82,35 @@ productRouter.get("/", async (c) => {
 productRouter.get("/:id", async (c) => {
     try {
         const id = c.req.param('id');
-        const prisma = createPrismaClient(c.env.DATABASE_URL);
+        
+        const prisma = new PrismaClient({
+            datasourceUrl: c.env.DATABASE_URL,
+          }).$extends(withAccelerate())
+
         const product = await prisma.product.findUnique({
-            where: { id },
+            where: { 
+                id 
+            },
         });
 
         if (!product) {
             c.status(StatusCode.NotFound);
-            return c.json({ msg: "Product not found" });
+            return c.json({ 
+                msg: "Product not found" 
+            });
         }
 
-        return c.json({ product }, { status: StatusCode.OK });
+        return c.json({ 
+            product 
+        }, { status: StatusCode.OK });
+
     } catch (e) {
-        console.error(e);
+       
         c.status(StatusCode.InternalServerError);
-        return c.json({ msg: "Failed to retrieve product" });
+
+        return c.json({
+             msg: "Failed to retrieve product" 
+        });
     }
 });
 
@@ -92,23 +119,45 @@ productRouter.put("/:id", async (c) => {
     try {
         const id = c.req.param('id');
         const body = await c.req.json();
-        const validatedData = productSchema.parse(body);
+        
+        const { success } = productSchema.safeParse(body);
 
-        const prisma = createPrismaClient(c.env.DATABASE_URL);
+        if(!success) {
+            c.status(StatusCode.BadRequest);
+            return c.json({
+                 msg: "Incorrect input"
+            })
+
+        }
+
+        const prisma = new PrismaClient({
+            datasourceUrl: c.env.DATABASE_URL,
+          }).$extends(withAccelerate())
+
+
         const updatedProduct = await prisma.product.update({
             where: { id },
-            data: validatedData,
+            data: {
+                name: body.name,
+                description:  body.description,
+                price: body.price,
+                inventory: body.inventory,
+                image: body.image,
+                category: body.category
+            },
         });
 
-        return c.json({ product: updatedProduct, msg: "Product updated successfully" }, { status: StatusCode.OK });
+        return c.json({ 
+            product: updatedProduct, 
+            msg: "Product updated successfully" 
+        }, { status: StatusCode.OK });
+
     } catch (e) {
-        if (e instanceof z.ZodError) {
-            c.status(StatusCode.BadRequest);
-            return c.json({ msg: "Invalid input", errors: e.errors });
-        }
-        console.error(e);
         c.status(StatusCode.InternalServerError);
-        return c.json({ msg: "Failed to update product" });
+
+        return c.json({ 
+            msg: "Failed to update product" 
+        });
     }
 });
 
@@ -116,16 +165,27 @@ productRouter.put("/:id", async (c) => {
 productRouter.delete("/:id", async (c) => {
     try {
         const id = c.req.param('id');
-        const prisma = createPrismaClient(c.env.DATABASE_URL);
+
+        const prisma = new PrismaClient({
+            datasourceUrl: c.env.DATABASE_URL,
+          }).$extends(withAccelerate())
+
         await prisma.product.delete({
-            where: { id },
+            where: { 
+                id 
+            },
         });
 
-        return c.json({ msg: "Product deleted successfully" }, { status: StatusCode.OK });
+        return c.json({ 
+            msg: "Product deleted successfully" 
+        }, { status: StatusCode.OK });
+
     } catch (e) {
-        console.error(e);
+       
         c.status(StatusCode.InternalServerError);
-        return c.json({ msg: "Failed to delete product" });
+        return c.json({ 
+            msg: "Failed to delete product" 
+        });
     }
 });
 
