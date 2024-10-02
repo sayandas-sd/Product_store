@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { StatusCode } from "../statuscode";
 import { productSchema } from "../zod";
 
-const productRouter = new Hono<{
+export const productRouter = new Hono<{
     Bindings: {
         DATABASE_URL: string;
     }
