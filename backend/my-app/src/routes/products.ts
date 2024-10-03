@@ -4,6 +4,7 @@ import { withAccelerate } from '@prisma/extension-accelerate';
 import { z } from 'zod';
 import { StatusCode } from "../statuscode";
 import { productSchema } from "../zod";
+import { authMiddleWare } from "../middlewares/middleware";
 
 export const productRouter = new Hono<{
     Bindings: {
@@ -12,14 +13,13 @@ export const productRouter = new Hono<{
 }>();
 
 
-
 productRouter.post("/", async (c) => {
     try {
         const body = await c.req.json();
 
-        const { success } = productSchema.safeParse(body);
+        const result = productSchema.safeParse(body);
 
-        if(!success) {
+        if(!result.success) {
             c.status(StatusCode.BadRequest);
             return c.json({
                  msg: "Incorrect input"
@@ -30,15 +30,17 @@ productRouter.post("/", async (c) => {
         const prisma = new PrismaClient({
             datasourceUrl: c.env.DATABASE_URL,
           }).$extends(withAccelerate())
+
+        
           
         const newProduct = await prisma.product.create({
             data: {
-                name: body.name,
-                description:  body.description,
-                price: body.price,
-                inventory: body.inventory,
-                image: body.image,
-                category: body.category
+                name: result.data.name,
+                description: result.data.description,
+                price: result.data.price,
+                inventory: result.data.inventory,
+                image: result.data.image,
+                categoryId: result.data.categoryId
             },
         });
 
@@ -188,4 +190,3 @@ productRouter.delete("/:id", async (c) => {
         });
     }
 });
-

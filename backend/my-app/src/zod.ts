@@ -50,7 +50,9 @@ export const productSchema = z.object({
     price: z.number().positive(),
     inventory: z.number().positive(),
     image: z.string().url().optional(),
-    category: z.string(),
+    categoryId: z.string().uuid()
 })
 
 export type productSchema = z.infer<typeof productSchema>
+
+
