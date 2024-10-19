@@ -56,3 +56,9 @@ export const productSchema = z.object({
 export type productSchema = z.infer<typeof productSchema>
 
 
+export const categorySchema = z.object({
+    name: z.string().min(1),
+    description: z.string()
+})
+
+export type categorySchema = z.infer<typeof categorySchema>

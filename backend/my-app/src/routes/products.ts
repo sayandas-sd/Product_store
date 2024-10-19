@@ -40,7 +40,8 @@ productRouter.post("/", async (c) => {
                 price: result.data.price,
                 inventory: result.data.inventory,
                 image: result.data.image,
-                categoryId: result.data.categoryId
+                //@ts-ignore
+                category: result.data.category
             },
         });
 

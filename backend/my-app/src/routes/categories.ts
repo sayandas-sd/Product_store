@@ -12,3 +12,23 @@ export const categoryRouter = new Hono<{
     }
 }>();
 
+categoryRouter.get("/", async (c) => {
+
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+      }).$extends(withAccelerate())      
+
+    try{
+        const categories = await prisma.category.findMany({});
+
+        return c.json({
+            msg: "Categories fetched successfully"
+        }, { status: StatusCode.OK })
+
+    } catch(e) {
+        return c.json({
+            msg: "Failed to fetch categories",
+        }, StatusCode.InternalServerError);
+    }
+    
+})
