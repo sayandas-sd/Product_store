@@ -14,12 +14,12 @@ interface Image {
 
 const deskTopImages: Image[] = [
   { id: 1, src: image1, name: "Home" },
-  { id: 2, src: image2, name: "Beauty" },
-  { id: 3, src: image3, name: "Mobiles" },
-  { id: 4, src: image4, name: "Fashion" },
-  { id: 5, src: image5, name: "Electronics" },
-  { id: 6, src: image6, name: "Kids" },
-  { id: 7, src: image7, name: "Furniture" },
+  { id: 2, src: image2, name: "Pants" },
+  { id: 3, src: image3, name: "T-shirt" },
+  { id: 4, src: image4, name: "Sneakers" },
+  { id: 5, src: image5, name: "Caps" },
+  { id: 6, src: image6, name: "Casual Outfit" },
+  { id: 7, src: image7, name: "Shirts" },
 ];
 
 

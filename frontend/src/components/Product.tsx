@@ -1,3 +1,4 @@
+import Footer from "./Footer"
 
 
 export const Product = ()=>{
@@ -96,8 +97,8 @@ export const Product = ()=>{
         <div className="bg-blue-100 mx-auto p-5 mt-8 h-60">
             feature
         </div>
-        <div className="mx-auto bg-zinc-900 p-5 h-96 text-white md:text-white">
-            FOOTER
+        <div className="mx-auto bg-zinc-900 text-white md:text-white">
+            <Footer/>
         </div>
     </div>
 }
