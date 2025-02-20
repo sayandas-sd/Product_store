@@ -1,6 +1,6 @@
 
 export const Cart = ()=>{
     return <div>
-        helo
+        cart
     </div>
 }

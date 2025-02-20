@@ -171,13 +171,18 @@ export const Product = ()=>{
             </div>  
         </div>
 
-       
-
-        <div className="text:2xl font-semibold md:text-3xl md:font-semibold tracking-wider font-mono text-slate-800 flex justify-center items-center p-8 mt-5" >
-            DISCOUNT PRODUCTS
+        <div className="text:5xl font-black tracking-widest text-black md:text-5xl md:text-black md:font-semibold tracking-wide text-center m-10 ">
+            Over 1000 Happy Customers
         </div>
 
-        <div className="text:2xl font-semibold tracking-widest text-white md:text-3xl md:text-white md:font-semibold tracking-wide text-slate-800 flex justify-center items-center p-3 mt-7 bg-red-600 md:bg-red-600">
+       
+
+        <div className="text:2xl font-semibold tracking-widest text-white md:text-3xl md:text-white md:font-semibold tracking-wide text-slate-800 flex justify-center items-center p-6 mt-2 bg-black md:bg-black">
+           
+            BUY NOW
+        </div>
+
+        <div className="text:2xl font-semibold tracking-widest text-white md:text-3xl md:text-white md:font-semibold tracking-wide text-slate-800 flex justify-center items-center p-3 mt-3 bg-red-600 md:bg-red-600">
             BEST BRAND
         </div>
         <div>
