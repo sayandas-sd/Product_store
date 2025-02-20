@@ -5,15 +5,10 @@ export default function Footer() {
   return (
     <footer className="bg-zinc-900 pt-12 pb-6 text-zinc-300">
       <div className="container mx-auto px-4 flex flex-col items-center bg-zinc-900">
-        {/* Happy Customers Banner */}
-        <div className="text-center mb-12 w-full">
-          <h2 className="text-4xl font-bold text-white">Over 1000 Happy Customers</h2>
-        </div>
-
-        {/* Main Footer Content */}
+        
         <div className="w-full max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-            {/* Need Help Section */}
+           
             <div>
               <h3 className="text-red-500 font-bold mb-4">NEED HELP</h3>
               <ul className="space-y-2">
@@ -44,7 +39,7 @@ export default function Footer() {
                 </li>
               </ul>
 
-              {/* Features */}
+              
               <div className="mt-4 space-y-2 text-zinc-400">
                 <div className="flex items-center gap-2">
                   <IndianRupee className="w-5 h-5" />
@@ -57,7 +52,7 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Company Section */}
+  
             <div>
               <h3 className="text-red-500 font-bold mb-4">COMPANY</h3>
               <ul className="space-y-2">
@@ -89,7 +84,7 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* More Info Section */}
+          
             <div>
               <h3 className="text-red-500 font-bold mb-4">MORE INFO</h3>
               <ul className="space-y-2">
@@ -116,7 +111,7 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Store Near Me Section */}
+        
             <div>
               <h3 className="text-red-500 font-bold mb-4">STORE NEAR ME</h3>
               <ul className="space-y-2">
@@ -149,9 +144,9 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* App Download Section */}
+         
           <div className="text-center mb-8">
-            <p className="text-zinc-400 mb-4">📱 EXPERIENCE THE SOULED STORE APP</p>
+            <p className="text-zinc-400 mb-4">📱 EXPERIENCE THE E SHOP</p>
             <div className="flex justify-center gap-4">
               <Link to="#">
                 <img
@@ -170,7 +165,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Social Media */}
+         
           <div className="flex justify-center items-center gap-4 mb-8">
             <span className="text-zinc-400">Follow Us:</span>
             <Link to="#" className="bg-blue-600 py-2 px-4 rounded-full text-white hover:bg-blue-700 transition-colors">
@@ -184,13 +179,7 @@ export default function Footer() {
             </Link>
           </div>
 
-          {/* Navigation Links */}
-          <div className="border-t border-zinc-800 pt-4 w-full">
-            <button className="w-full flex justify-between items-center text-red-500 font-bold hover:text-red-400 transition-colors">
-              NAVIGATION LINKS
-              <span className="text-2xl">+</span>
-            </button>
-          </div>
+         
         </div>
       </div>
     </footer>
