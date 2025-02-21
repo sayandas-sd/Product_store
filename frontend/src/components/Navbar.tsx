@@ -1,8 +1,11 @@
 import { Cart } from "./Cart";
 
-import { Login } from "./Login";
+
 import logo from "../assets/images/logo.png";
 import { useNavigate } from "react-router-dom";
+import { LoginButton } from "./LoginButton";
+
+
 
 export const Navbar = ({ 
     placeholder 
@@ -12,7 +15,7 @@ export const Navbar = ({
   const handleClick = () => {
     navigate("/");
   };
-  
+
     return <div className="border-b flex justify-evenly items-center md:justify-evenly p-1 cursor-pointer">
         <div className="flex justify-center flex-col cursor-pointer" onClick={handleClick}>
             <Logo/>
@@ -30,7 +33,7 @@ export const Navbar = ({
             <Collection />
         </div>
         <div className="flex justify-center flex-col">
-            <Login />
+            <LoginButton/>
         </div>
     </div>
 }
@@ -47,7 +50,7 @@ const SearchBar = ({placeholder} : Type) => {
                 <div className="relative flex">
                     <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                         </svg>
                     </div>
                     <input 
